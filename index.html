@@ -1,0 +1,778 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Austria & Bavaria — May 2027</title>
+<link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400;0,700;1,400&family=Barlow:wght@300;400;500;600&family=Barlow+Condensed:wght@400;600;700&display=swap" rel="stylesheet">
+<style>
+  :root {
+    --cream: #F7F2EA;
+    --warm-white: #FDFBF7;
+    --alpine-red: #A8322D;
+    --alpine-red-light: #C9564F;
+    --lake: #2E6B8A;
+    --lake-light: #4A90A4;
+    --charcoal: #2A2520;
+    --mid: #5C4F42;
+    --muted: #8C7B6E;
+    --gold: #C49A28;
+    --sage: #7A8C6A;
+    --divider: #E0D5C8;
+  }
+
+  * { margin: 0; padding: 0; box-sizing: border-box; }
+
+  body {
+    background: var(--cream);
+    color: var(--charcoal);
+    font-family: 'Barlow', sans-serif;
+    font-weight: 300;
+    line-height: 1.6;
+  }
+
+  /* ── HERO ── */
+  .hero {
+    background: var(--charcoal);
+    color: var(--cream);
+    padding: 80px 60px 70px;
+    position: relative;
+    overflow: hidden;
+  }
+  .hero::before {
+    content: '';
+    position: absolute;
+    top: 0; left: 0; right: 0; bottom: 0;
+    background:
+      radial-gradient(ellipse at 10% 80%, rgba(168,50,45,0.20) 0%, transparent 55%),
+      radial-gradient(ellipse at 90% 20%, rgba(46,107,138,0.22) 0%, transparent 55%);
+  }
+  .hero-inner { position: relative; max-width: 900px; margin: 0 auto; }
+  .hero-eyebrow {
+    font-family: 'Barlow Condensed', sans-serif;
+    font-size: 11px;
+    letter-spacing: 4px;
+    text-transform: uppercase;
+    color: var(--gold);
+    margin-bottom: 20px;
+  }
+  .hero h1 {
+    font-family: 'Playfair Display', serif;
+    font-size: clamp(48px, 7vw, 80px);
+    font-weight: 400;
+    line-height: 1.05;
+    margin-bottom: 10px;
+  }
+  .hero h1 em {
+    font-style: italic;
+    color: var(--lake-light);
+  }
+  .hero-subtitle {
+    font-family: 'Barlow Condensed', sans-serif;
+    font-size: 18px;
+    letter-spacing: 2px;
+    color: rgba(247,242,234,0.60);
+    margin-top: 16px;
+  }
+  .hero-divider {
+    width: 60px;
+    height: 2px;
+    background: var(--gold);
+    margin: 28px 0;
+  }
+  .hero-meta {
+    display: flex;
+    gap: 48px;
+    flex-wrap: wrap;
+  }
+  .hero-meta-item label {
+    display: block;
+    font-size: 10px;
+    letter-spacing: 3px;
+    text-transform: uppercase;
+    color: rgba(247,242,234,0.45);
+    margin-bottom: 4px;
+    font-family: 'Barlow Condensed', sans-serif;
+  }
+  .hero-meta-item span {
+    font-size: 15px;
+    color: rgba(247,242,234,0.90);
+    font-weight: 400;
+  }
+
+  /* ── SECTION HEADERS ── */
+  .section-header {
+    padding: 52px 60px 0;
+    max-width: 960px;
+    margin: 0 auto;
+  }
+  .section-header h2 {
+    font-family: 'Barlow Condensed', sans-serif;
+    font-size: 11px;
+    letter-spacing: 4px;
+    text-transform: uppercase;
+    color: var(--muted);
+    margin-bottom: 8px;
+  }
+  .section-header h3 {
+    font-family: 'Playfair Display', serif;
+    font-size: 32px;
+    font-weight: 400;
+    color: var(--charcoal);
+  }
+  .section-header .flag {
+    display: inline-block;
+    font-size: 22px;
+    margin-right: 10px;
+    vertical-align: middle;
+  }
+
+  /* ── ROUTE TABLE ── */
+  .route {
+    max-width: 960px;
+    margin: 0 auto;
+    padding: 24px 60px 0;
+  }
+  .route table {
+    width: 100%;
+    border-collapse: collapse;
+    background: var(--warm-white);
+    border: 1px solid var(--divider);
+    font-size: 14px;
+  }
+  .route th {
+    font-family: 'Barlow Condensed', sans-serif;
+    font-size: 10px;
+    letter-spacing: 2px;
+    text-transform: uppercase;
+    color: var(--muted);
+    font-weight: 600;
+    text-align: left;
+    padding: 12px 16px;
+    border-bottom: 1px solid var(--divider);
+  }
+  .route td {
+    padding: 11px 16px;
+    color: var(--mid);
+    border-bottom: 1px solid var(--divider);
+    vertical-align: top;
+  }
+  .route tr:last-child td { border-bottom: none; }
+  .route td strong { color: var(--charcoal); font-weight: 500; }
+  .route .nights {
+    font-family: 'Playfair Display', serif;
+    font-size: 20px;
+    color: var(--charcoal);
+    text-align: center;
+    width: 60px;
+  }
+  .route-wrap { overflow-x: auto; }
+
+  /* ── DAY CARDS ── */
+  .days-container {
+    max-width: 960px;
+    margin: 0 auto;
+    padding: 24px 60px 0;
+  }
+
+  .day-card {
+    display: grid;
+    grid-template-columns: 80px 1fr;
+    gap: 0;
+    margin-bottom: 2px;
+    border-radius: 2px;
+    overflow: hidden;
+  }
+
+  .day-label {
+    background: var(--charcoal);
+    color: var(--cream);
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: flex-start;
+    padding: 24px 12px;
+    text-align: center;
+    min-height: 100%;
+  }
+  .day-label .dow {
+    font-family: 'Barlow Condensed', sans-serif;
+    font-size: 10px;
+    letter-spacing: 2px;
+    text-transform: uppercase;
+    color: rgba(247,242,234,0.55);
+    margin-bottom: 4px;
+  }
+  .day-label .date-num {
+    font-family: 'Playfair Display', serif;
+    font-size: 28px;
+    font-weight: 400;
+    line-height: 1;
+  }
+  .day-label .month {
+    font-family: 'Barlow Condensed', sans-serif;
+    font-size: 11px;
+    letter-spacing: 1px;
+    color: rgba(247,242,234,0.65);
+    margin-top: 2px;
+  }
+
+  /* Austria days */
+  .austria .day-label { background: var(--alpine-red); }
+  /* Bavaria days */
+  .bavaria .day-label { background: var(--lake); }
+  /* travel days */
+  .travel .day-label { background: var(--charcoal); }
+
+  .day-body {
+    background: var(--warm-white);
+    padding: 24px 30px;
+    border-left: 3px solid var(--divider);
+  }
+  .austria .day-body { border-left-color: rgba(168,50,45,0.25); }
+  .bavaria .day-body { border-left-color: rgba(46,107,138,0.25); }
+
+  .day-title {
+    font-family: 'Barlow Condensed', sans-serif;
+    font-size: 18px;
+    font-weight: 600;
+    letter-spacing: 0.5px;
+    color: var(--charcoal);
+    margin-bottom: 4px;
+  }
+  .day-region {
+    font-size: 11px;
+    letter-spacing: 2px;
+    text-transform: uppercase;
+    color: var(--muted);
+    margin-bottom: 14px;
+    font-family: 'Barlow Condensed', sans-serif;
+  }
+
+  /* Items */
+  .items { list-style: none; display: flex; flex-direction: column; gap: 8px; }
+  .item {
+    display: flex;
+    gap: 12px;
+    align-items: flex-start;
+    font-size: 14.5px;
+    line-height: 1.5;
+    color: var(--mid);
+  }
+  .item-icon {
+    font-size: 15px;
+    flex-shrink: 0;
+    margin-top: 1px;
+  }
+  .item strong {
+    color: var(--charcoal);
+    font-weight: 500;
+  }
+  .item a, .hotel-box a, .tip-card a {
+    color: var(--alpine-red);
+    text-decoration: none;
+  }
+  .item a:hover, .hotel-box a:hover, .tip-card a:hover { text-decoration: underline; }
+
+  .badge {
+    display: inline-block;
+    font-family: 'Barlow Condensed', sans-serif;
+    font-size: 10px;
+    letter-spacing: 2px;
+    text-transform: uppercase;
+    padding: 3px 8px;
+    border-radius: 2px;
+    margin-left: 6px;
+    vertical-align: middle;
+  }
+  .badge-idea {
+    background: rgba(196,154,40,0.15);
+    color: #9A7818;
+    border: 1px solid rgba(196,154,40,0.35);
+  }
+  .badge-booked {
+    background: rgba(122,140,106,0.15);
+    color: #5E6E50;
+    border: 1px solid rgba(122,140,106,0.35);
+  }
+  .badge-anniv {
+    background: rgba(168,50,45,0.10);
+    color: var(--alpine-red);
+    border: 1px solid rgba(168,50,45,0.30);
+  }
+
+  /* Suggestion boxes */
+  .suggestion {
+    margin-top: 14px;
+    background: linear-gradient(135deg, rgba(247,242,234,0.9), rgba(253,251,247,0.9));
+    border: 1px solid var(--divider);
+    border-radius: 4px;
+    padding: 16px 18px;
+    position: relative;
+  }
+  .suggestion::before {
+    content: '★ TIP';
+    position: absolute;
+    top: -9px;
+    left: 14px;
+    background: var(--gold);
+    color: white;
+    font-family: 'Barlow Condensed', sans-serif;
+    font-size: 9px;
+    letter-spacing: 2px;
+    padding: 2px 8px;
+    border-radius: 2px;
+  }
+  .suggestion-title {
+    font-family: 'Barlow Condensed', sans-serif;
+    font-size: 15px;
+    font-weight: 600;
+    color: var(--charcoal);
+    margin-bottom: 4px;
+  }
+  .suggestion p {
+    font-size: 13.5px;
+    color: var(--mid);
+    line-height: 1.55;
+    margin-bottom: 6px;
+  }
+  .suggestion p:last-child { margin-bottom: 0; }
+  .suggestion a {
+    color: var(--alpine-red);
+    font-size: 12px;
+    text-decoration: none;
+  }
+  .suggestion a:hover { text-decoration: underline; }
+
+  /* Hotel callout */
+  .hotel-box {
+    margin-top: 14px;
+    padding: 12px 16px;
+    background: rgba(46,107,138,0.06);
+    border-left: 3px solid var(--lake-light);
+    border-radius: 2px;
+    font-size: 13px;
+    color: var(--mid);
+    line-height: 1.5;
+  }
+  .hotel-box.austria {
+    background: rgba(168,50,45,0.06);
+    border-left-color: var(--alpine-red-light);
+  }
+  .hotel-box strong { color: var(--charcoal); display: block; margin-bottom: 2px; }
+
+  /* ── NOTES SECTION ── */
+  .tips {
+    max-width: 960px;
+    margin: 50px auto 60px;
+    padding: 0 60px;
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 20px;
+  }
+  .tip-card {
+    background: var(--warm-white);
+    border: 1px solid var(--divider);
+    border-radius: 4px;
+    padding: 24px;
+  }
+  .tip-card h4 {
+    font-family: 'Barlow Condensed', sans-serif;
+    font-size: 11px;
+    letter-spacing: 3px;
+    text-transform: uppercase;
+    color: var(--muted);
+    margin-bottom: 12px;
+  }
+  .tip-card ul { list-style: none; display: flex; flex-direction: column; gap: 7px; }
+  .tip-card li {
+    font-size: 13.5px;
+    color: var(--mid);
+    padding-left: 14px;
+    position: relative;
+    line-height: 1.5;
+  }
+  .tip-card li::before {
+    content: '→';
+    position: absolute;
+    left: 0;
+    color: var(--gold);
+  }
+  .tip-card li strong { color: var(--charcoal); font-weight: 500; }
+
+  /* ── FOOTER ── */
+  footer {
+    background: var(--charcoal);
+    color: rgba(247,242,234,0.50);
+    text-align: center;
+    padding: 28px;
+    font-family: 'Barlow Condensed', sans-serif;
+    font-size: 11px;
+    letter-spacing: 2px;
+    text-transform: uppercase;
+  }
+
+  .spacer { height: 32px; }
+  .spacer-sm { height: 16px; }
+
+  @media (max-width: 700px) {
+    .hero { padding: 50px 20px 44px; }
+    .hero-meta { gap: 28px; }
+    .section-header, .days-container, .tips, .route { padding-left: 16px; padding-right: 16px; }
+    .tips { grid-template-columns: 1fr; }
+    .day-card { grid-template-columns: 64px 1fr; }
+    .day-body { padding: 20px 18px; }
+    .route td, .route th { padding: 10px 10px; }
+  }
+</style>
+</head>
+<body>
+
+<!-- ══ HERO ══ -->
+<div class="hero">
+  <div class="hero-inner">
+    <div class="hero-eyebrow">20th Anniversary · Private Travel Itinerary</div>
+    <h1>Austria &amp;<br><em>Bavaria</em></h1>
+    <div class="hero-subtitle">Lakes, castles &amp; Alpine peaks</div>
+    <div class="hero-divider"></div>
+    <div class="hero-meta">
+      <div class="hero-meta-item">
+        <label>Dates</label>
+        <span>May 13 – May 22, 2027</span>
+      </div>
+      <div class="hero-meta-item">
+        <label>Regions</label>
+        <span>Salzburg · Salzkammergut · Tyrol · Bavarian Alps · Munich</span>
+      </div>
+      <div class="hero-meta-item">
+        <label>Duration</label>
+        <span>9 nights · 10 days</span>
+      </div>
+      <div class="hero-meta-item">
+        <label>Travelers</label>
+        <span>4 · two rooms</span>
+      </div>
+      <div class="hero-meta-item">
+        <label>Transport</label>
+        <span>Rental car MUC → MUC · S-Bahn last night</span>
+      </div>
+    </div>
+  </div>
+</div>
+
+
+<!-- ══ ROUTE ══ -->
+<div class="section-header">
+  <h2>At a Glance</h2>
+  <h3>The Route</h3>
+</div>
+<div class="route">
+  <div class="route-wrap">
+  <table>
+    <thead>
+      <tr><th>Nights</th><th>Dates</th><th>Base</th><th>Drive In</th></tr>
+    </thead>
+    <tbody>
+      <tr><td class="nights">2</td><td>May 14–15</td><td><strong>Salzburg</strong></td><td>MUC airport → ~1h 45m</td></tr>
+      <tr><td class="nights">2</td><td>May 16–17</td><td><strong>St. Wolfgang</strong> (Wolfgangsee)</td><td>Salzburg → ~45m</td></tr>
+      <tr><td class="nights">1</td><td>May 18</td><td><strong>Innsbruck</strong></td><td>St. Wolfgang → ~2h 30m–3h</td></tr>
+      <tr><td class="nights">2</td><td>May 19–20</td><td><strong>Garmisch-Partenkirchen</strong></td><td>Innsbruck → ~1h 15m (via Ehrwald)</td></tr>
+      <tr><td class="nights">1</td><td>May 21</td><td><strong>Munich</strong> Old Town</td><td>Garmisch → MUC ~1h 45m, then S-Bahn ~40m</td></tr>
+    </tbody>
+  </table>
+  </div>
+</div>
+
+
+<!-- ══ AUSTRIA ══ -->
+<div class="spacer"></div>
+<div class="section-header">
+  <h2>Part One</h2>
+  <h3><span class="flag">🇦🇹</span>Salzburg, the Lakes &amp; Tyrol</h3>
+</div>
+
+<div class="days-container">
+
+  <!-- May 13 -->
+  <div class="day-card travel">
+    <div class="day-label">
+      <div class="dow">Thu</div>
+      <div class="date-num">13</div>
+      <div class="month">May</div>
+    </div>
+    <div class="day-body">
+      <div class="day-title">Departure</div>
+      <div class="day-region">USA → Munich (MUC)</div>
+      <ul class="items">
+        <li class="item"><span class="item-icon">✈️</span><span>Overnight flight to Munich <span class="badge badge-idea">Flight TBD</span></span></li>
+      </ul>
+    </div>
+  </div>
+
+  <div class="spacer-sm"></div>
+
+  <!-- May 14 -->
+  <div class="day-card austria">
+    <div class="day-label">
+      <div class="dow">Fri</div>
+      <div class="date-num">14</div>
+      <div class="month">May</div>
+    </div>
+    <div class="day-body">
+      <div class="day-title">Arrival → Salzburg</div>
+      <div class="day-region">Munich MUC · Salzburg</div>
+      <ul class="items">
+        <li class="item"><span class="item-icon">🛬</span><span>Land at <strong>Munich (MUC)</strong></span></li>
+        <li class="item"><span class="item-icon">🚗</span><span>Pick up the rental car at the airport rental center. Reserve an <strong>automatic</strong>, and have the digital Austrian vignette bought before you cross the border.</span></li>
+        <li class="item"><span class="item-icon">🛣️</span><span>Drive ~1h 45m to Salzburg</span></li>
+        <li class="item"><span class="item-icon">🌷</span><span><strong>Easy afternoon:</strong> Old Town, Getreidegasse and Mirabell Gardens, then an early dinner</span></li>
+      </ul>
+      <div class="hotel-box austria">
+        <strong>Salzburg: 2 nights <span class="badge badge-idea">Options</span></strong>
+        Hotel Schloss Mönchstein (a castle on the hill above the Old Town, the anniversary pick) · Hotel Goldener Hirsch · Hotel Sacher Salzburg
+      </div>
+    </div>
+  </div>
+
+  <div class="spacer-sm"></div>
+
+  <!-- May 15 -->
+  <div class="day-card austria">
+    <div class="day-label">
+      <div class="dow">Sat</div>
+      <div class="date-num">15</div>
+      <div class="month">May</div>
+    </div>
+    <div class="day-body">
+      <div class="day-title">Fortress Morning &amp; Königssee</div>
+      <div class="day-region">Salzburg · Berchtesgaden</div>
+      <ul class="items">
+        <li class="item"><span class="item-icon">🏰</span><span><strong>Morning:</strong> <a href="https://www.festung-hohensalzburg.at/en/your-visit/tickets" target="_blank">Hohensalzburg Fortress</a> by the <a href="https://www.5schaetze.at/en/festungsbahn/prices.html" target="_blank">FestungsBahn funicular</a>, then Salzburg Cathedral</span></li>
+        <li class="item"><span class="item-icon">🚤</span><span><strong>Afternoon:</strong> 30 min to Berchtesgaden for the <a href="https://www.seenschifffahrt.de/en/koenigssee" target="_blank">Königssee electric boat</a> to St. Bartholomä</span></li>
+        <li class="item"><span class="item-icon">🦅</span><span><strong>Optional:</strong> <a href="https://www.kehlsteinhaus.com/site-information/frequently-asked-questions.html" target="_blank">Eagle's Nest (Kehlsteinhaus)</a>, only if its road has opened for the season</span></li>
+      </ul>
+    </div>
+  </div>
+
+  <div class="spacer-sm"></div>
+
+  <!-- May 16 -->
+  <div class="day-card austria">
+    <div class="day-label">
+      <div class="dow">Sun</div>
+      <div class="date-num">16</div>
+      <div class="month">May</div>
+    </div>
+    <div class="day-body">
+      <div class="day-title">To the Lake → Schafberg Summit</div>
+      <div class="day-region">Salzkammergut · St. Wolfgang</div>
+      <ul class="items">
+        <li class="item"><span class="item-icon">🛣️</span><span>Drive ~45 min to St. Wolfgang</span></li>
+        <li class="item"><span class="item-icon">🚂</span><span><a href="https://www.5schaetze.at/en/schafbergbahn.html" target="_blank">Schafberg cog railway</a> to the summit for views over the lakes (<a href="https://www.5schaetze.at/en/schafbergbahn/prices-and-timetables.html" target="_blank">timetable</a>)</span></li>
+        <li class="item"><span class="item-icon">⛴️</span><span><strong>Evening:</strong> <a href="https://www.salzburg.info/en/sights/excursions/schafberg-railroad-wolfgangsee-cruises" target="_blank">Wolfgangsee lake boat</a> and dinner by the water</span></li>
+      </ul>
+      <div class="hotel-box austria">
+        <strong>St. Wolfgang: 2 nights <span class="badge badge-idea">Options</span></strong>
+        <a href="https://www.romantikhotels.com/en/hotels/romantik-hotel-im-weissen-roessl-am-wolfgangsee/" target="_blank">Romantik Hotel Im Weissen Rössl</a> is right on the lake, with a heated pool that floats on it. Ask for lake-view rooms. Alternative: stay in St. Gilgen on the same lake.
+      </div>
+    </div>
+  </div>
+
+  <div class="spacer-sm"></div>
+
+  <!-- May 17 -->
+  <div class="day-card austria">
+    <div class="day-label">
+      <div class="dow">Mon</div>
+      <div class="date-num">17</div>
+      <div class="month">May</div>
+    </div>
+    <div class="day-body">
+      <div class="day-title">Hallstatt Day Trip</div>
+      <div class="day-region">Salzkammergut · Hallstatt · St. Gilgen</div>
+      <ul class="items">
+        <li class="item"><span class="item-icon">🏘️</span><span><strong>Hallstatt</strong> (~1 hr). Arrive early to beat the tour buses and walk the village.</span></li>
+        <li class="item"><span class="item-icon">⛰️</span><span><a href="https://www.salzwelten.at/en/hallstatt" target="_blank">Salt Mine or Skywalk</a> (<a href="https://www.salzwelten.at/en/hallstatt/prices-opening-hours" target="_blank">hours &amp; prices</a>)</span></li>
+        <li class="item"><span class="item-icon">🌅</span><span><strong>Afternoon:</strong> back at the lake, or a stop in St. Gilgen</span></li>
+      </ul>
+    </div>
+  </div>
+
+  <div class="spacer-sm"></div>
+
+  <!-- May 18 -->
+  <div class="day-card austria">
+    <div class="day-label">
+      <div class="dow">Tue</div>
+      <div class="date-num">18</div>
+      <div class="month">May</div>
+    </div>
+    <div class="day-body">
+      <div class="day-title">Drive to Innsbruck → Nordkette</div>
+      <div class="day-region">Tyrol · Innsbruck</div>
+      <ul class="items">
+        <li class="item"><span class="item-icon">🛣️</span><span>Drive ~2h 30m–3h to Innsbruck</span></li>
+        <li class="item"><span class="item-icon">🚠</span><span><strong>Afternoon:</strong> <a href="https://nordkette.com/en/" target="_blank">Nordkette cable car</a> from downtown up to ~7,500 ft (<a href="https://nordkette.com/en/facilities-/-timetable/" target="_blank">timetable</a>)</span></li>
+        <li class="item"><span class="item-icon">🌆</span><span><strong>Evening:</strong> Old Town by the <a href="https://www.innsbruck.info/en/sightseeing/i/golden-roof.html" target="_blank">Golden Roof</a></span></li>
+      </ul>
+      <div class="hotel-box austria">
+        <strong>Innsbruck: 1 night <span class="badge badge-idea">Options</span></strong>
+        Hotel Innsbruck · Grauer Bär · Nala Individuellhotel. All are in or next to the Old Town, a short walk from the Nordkette station.
+      </div>
+    </div>
+  </div>
+
+</div><!-- /days-container -->
+
+
+<!-- ══ BAVARIA ══ -->
+<div class="spacer"></div>
+<div class="section-header">
+  <h2>Part Two</h2>
+  <h3><span class="flag">🇩🇪</span>Zugspitze, Castles &amp; Munich</h3>
+</div>
+
+<div class="days-container">
+
+  <!-- May 19 -->
+  <div class="day-card bavaria">
+    <div class="day-label">
+      <div class="dow">Wed</div>
+      <div class="date-num">19</div>
+      <div class="month">May</div>
+    </div>
+    <div class="day-body">
+      <div class="day-title">Zugspitze → Garmisch</div>
+      <div class="day-region">Innsbruck · Ehrwald · Garmisch-Partenkirchen</div>
+      <ul class="items">
+        <li class="item"><span class="item-icon">🏛️</span><span><strong>Morning:</strong> Innsbruck Old Town or the Hofburg</span></li>
+        <li class="item"><span class="item-icon">🚠</span><span>Drive ~1 hr to Ehrwald and ride the <a href="https://www.zugspitze.at/en/prices-times/opening-hours/" target="_blank">Tiroler Zugspitzbahn</a> up Germany's highest peak from the Austrian side. Summer service runs daily from May 6, 2027.</span></li>
+        <li class="item"><span class="item-icon">🛣️</span><span>~20 min on to Garmisch</span></li>
+      </ul>
+      <div class="hotel-box">
+        <strong>Garmisch: 2 nights <span class="badge badge-idea">Options</span></strong>
+        Schloss Elmau (~20 min away, the anniversary splurge) · Hotel Obermühle (walkable and family-run)
+      </div>
+    </div>
+  </div>
+
+  <div class="spacer-sm"></div>
+
+  <!-- May 20 -->
+  <div class="day-card bavaria">
+    <div class="day-label">
+      <div class="dow">Thu</div>
+      <div class="date-num">20</div>
+      <div class="month">May</div>
+    </div>
+    <div class="day-body">
+      <div class="day-title">Castles Day <span class="badge badge-anniv">Anniversary Dinner</span></div>
+      <div class="day-region">Bavarian Alps · Neuschwanstein · Linderhof · Oberammergau</div>
+      <ul class="items">
+        <li class="item"><span class="item-icon">🏰</span><span><a href="https://www.hohenschwangau.de/en/tours-tickets/official-tickets-neuschwanstein-hohenschwangau" target="_blank">Neuschwanstein</a> (~1 hr away). Tickets are timed, so reserve them online well ahead.</span></li>
+        <li class="item"><span class="item-icon">👑</span><span><a href="https://www.schloesser.bayern.de/englisch/palace/objects/li_schl.htm" target="_blank">Linderhof Palace</a>, then Oberammergau on the way back</span></li>
+        <li class="item"><span class="item-icon">🥂</span><span><strong>20th anniversary dinner</strong> <span class="badge badge-idea">Reserve</span></span></li>
+      </ul>
+    </div>
+  </div>
+
+  <div class="spacer-sm"></div>
+
+  <!-- May 21 -->
+  <div class="day-card bavaria">
+    <div class="day-label">
+      <div class="dow">Fri</div>
+      <div class="date-num">21</div>
+      <div class="month">May</div>
+    </div>
+    <div class="day-body">
+      <div class="day-title">Partnach Gorge → Munich</div>
+      <div class="day-region">Garmisch · MUC · Munich Old Town</div>
+      <ul class="items">
+        <li class="item"><span class="item-icon">🥾</span><span><strong>Morning:</strong> walk through the <a href="https://www.partnachklamm.de/en/Arrival" target="_blank">Partnach Gorge</a></span></li>
+        <li class="item"><span class="item-icon">🚙</span><span>Drive ~1h 45m to MUC and <strong>return the rental car</strong></span></li>
+        <li class="item"><span class="item-icon">🚆</span><span>S-Bahn <strong>S8 or S1</strong> ~40 min into the city. A group Airport-City day ticket covers up to 5 people.</span></li>
+        <li class="item"><span class="item-icon">🍺</span><span>Marienplatz, Viktualienmarkt, Englischer Garten, then a beer garden evening at the <a href="https://www.augustinerkeller.de/en" target="_blank">Augustiner-Keller</a> or the Chinesischer Turm</span></li>
+      </ul>
+      <div class="hotel-box">
+        <strong>Munich: 1 night <span class="badge badge-idea">Options</span></strong>
+        Hotel Bayerischer Hof · Mandarin Oriental · Louis Hotel (right on the Viktualienmarkt). All are in the Old Town.
+      </div>
+    </div>
+  </div>
+
+  <div class="spacer-sm"></div>
+
+  <!-- May 22 -->
+  <div class="day-card travel">
+    <div class="day-label">
+      <div class="dow">Sat</div>
+      <div class="date-num">22</div>
+      <div class="month">May</div>
+    </div>
+    <div class="day-body">
+      <div class="day-title">Fly Home</div>
+      <div class="day-region">Munich → USA</div>
+      <ul class="items">
+        <li class="item"><span class="item-icon">🚆</span><span>S-Bahn or taxi to MUC (40–45 min). Leave the hotel ~3 hrs before departure.</span></li>
+        <li class="item"><span class="item-icon">✈️</span><span>Fly home <span class="badge badge-idea">Flight TBD</span></span></li>
+      </ul>
+    </div>
+  </div>
+
+</div><!-- /days-container -->
+
+
+<!-- ══ TIPS ══ -->
+<div class="spacer"></div>
+<div class="tips">
+
+  <div class="tip-card">
+    <h4>Book Now — Before You Go</h4>
+    <ul>
+      <li>Flights US → MUC on May 13, and MUC → US on May 22</li>
+      <li>Weissen Rössl lake-view rooms (May 16–18). They sell out early.</li>
+      <li><a href="https://www.hohenschwangau.de/en/tours-tickets/official-tickets-neuschwanstein-hohenschwangau" target="_blank">Neuschwanstein timed tickets</a> for May 20</li>
+      <li>Anniversary dinner reservation for May 20</li>
+      <li>Two rooms at every stop: Salzburg, St. Wolfgang, Innsbruck, Garmisch, Munich</li>
+      <li>Hallstatt Salt Mine or Skywalk tickets (optional)</li>
+    </ul>
+  </div>
+
+  <div class="tip-card">
+    <h4>Car &amp; Logistics</h4>
+    <ul>
+      <li>Rent at the MUC airport rental center and return there on May 21. It's the same location, so no one-way fee.</li>
+      <li>Reserve an <strong>automatic</strong>. For 4 adults and luggage, get a midsize SUV or a station wagon (Kombi).</li>
+      <li>Tell the rental company you're driving into Austria</li>
+      <li>Buy the <strong>digital Austrian vignette</strong> (10-day version) online before crossing</li>
+      <li>Munich: S8 or S1 from the airport to Marienplatz or the main train station, ~40 min</li>
+    </ul>
+  </div>
+
+  <div class="tip-card">
+    <h4>Mid-May Notes</h4>
+    <ul>
+      <li>Mostly mild days with cool nights and occasional rain. Bring layers and a rain jacket.</li>
+      <li>Bring warm layers for the summits: Zugspitze, Nordkette, Schafberg</li>
+      <li>Tiroler Zugspitzbahn is closed for maintenance Apr 5 – May 5, 2027, and runs daily from May 6</li>
+      <li>Eagle's Nest road opening depends on the season. Check closer to the date.</li>
+    </ul>
+  </div>
+
+  <div class="tip-card">
+    <h4>Confirm Closer to the Trip</h4>
+    <ul>
+      <li>2027 season dates for the Schafberg railway, Königssee boats and Eagle's Nest</li>
+      <li>Hallstatt Salzwelten hours. It reopened in Sept 2026 after a year-long closure.</li>
+      <li>Hotel rates and availability for two rooms at each stop</li>
+    </ul>
+  </div>
+
+</div>
+
+
+<footer>Austria &amp; Bavaria · May 2027 · 20th Anniversary · Private Itinerary</footer>
+
+</body>
+</html>
